@@ -63,13 +63,13 @@ open class INSPhotosViewController: UIViewController, UIPageViewControllerDataSo
      */
     open var overlayView: INSPhotosOverlayViewable = INSPhotosOverlayView(frame: CGRect.zero) {
         willSet {
-            overlayView.view().removeFromSuperview()
+            overlayView.overlayView().removeFromSuperview()
         }
         didSet {
             overlayView.photosViewController = self
-            overlayView.view().autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            overlayView.view().frame = view.bounds
-            view.addSubview(overlayView.view())
+            overlayView.overlayView().autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            overlayView.overlayView().frame = view.bounds
+            view.addSubview(overlayView.overlayView())
         }
     }
 
@@ -207,9 +207,9 @@ open class INSPhotosViewController: UIViewController, UIPageViewControllerDataSo
     
     private func setupOverlayView() {
         
-        overlayView.view().autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        overlayView.view().frame = view.bounds
-        view.addSubview(overlayView.view())
+        overlayView.overlayView().autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        overlayView.overlayView().frame = view.bounds
+        view.addSubview(overlayView.overlayView())
         overlayView.setHidden(true, animated: false)
     }
     
@@ -262,7 +262,7 @@ open class INSPhotosViewController: UIViewController, UIPageViewControllerDataSo
     }
     
     @objc private func handleSingleTapGestureRecognizer(_ gestureRecognizer: UITapGestureRecognizer) {
-        overlayView.setHidden(!overlayView.view().isHidden, animated: true)
+        overlayView.setHidden(!overlayView.overlayView().isHidden, animated: true)
     }
     
     // MARK: - Target Actions
@@ -303,7 +303,7 @@ open class INSPhotosViewController: UIViewController, UIPageViewControllerDataSo
         } else {
             transitionAnimator.endingView = nil
         }
-        let overlayWasHiddenBeforeTransition = overlayView.view().isHidden
+        let overlayWasHiddenBeforeTransition = overlayView.overlayView().isHidden
         overlayView.setHidden(true, animated: true)
         
         willDismissHandler?(self)

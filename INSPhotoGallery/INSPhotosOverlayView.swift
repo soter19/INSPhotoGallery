@@ -24,11 +24,11 @@ public protocol INSPhotosOverlayViewable:class {
     
     func populateWithPhoto(_ photo: INSPhotoViewable)
     func setHidden(_ hidden: Bool, animated: Bool)
-    func view() -> UIView
+    func overlayView() -> UIView
 }
 
 extension INSPhotosOverlayViewable where Self: UIView {
-    public func view() -> UIView {
+    public func overlayView() -> UIView {
         return self
     }
 }
